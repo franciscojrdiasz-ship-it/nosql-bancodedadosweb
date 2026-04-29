@@ -1,0 +1,104 @@
+Criando um banco de dados:
+
+use cleanFast
+ 
+Criando collection:
+
+db.clientes.insertOne({nome: "Rodrigo", telefone: 21988441200, ativo: true, serviço: "superCleanFast" })
+ 
+Inserir mais duas documents:
+
+db.clientes.insertOne({nome: "Juliana", telefone: 21955667878, ativo: true, serviço: "superSecagem" })
+ 
+db.clientes.insertOne({nome: "Jamile", telefone: 21902024411, ativo: false, serviço: "superLavagem" })
+ 
+Exibindo dados:
+
+db.clientes.find()
+ 
+Criando a segunda collection:
+
+db.pedidos.insertOne({id: 1, nome: "Rodrigo", serviço: ["lavagem", "secagem", "passadoria"] })
+ 
+db.pedidos.insertOne({id: 2, nome: "Juliana", serviço: [ "secagem"] })
+ 
+db.pedidos.insertOne({id: 3, nome: "Jamile", serviço: ["lavagem"] })
+ 
+Exibindo dados:
+
+db.pedidos.find()
+ 
+Exibindo dado específico:
+
+db.pedidos.find({serviço: "lavagem"})
+ 
+Atualizando um dado:
+
+db.clientes.updateOne({ nome: "Jamile", telefone: 21902024411, ativo: false, serviço: "superLavagem"}, {$set: {ativo: true}})
+ 
+Exibindo dados:
+
+db.clientes.find()
+ 
+Atualizando vàrios ao mesmo tempo:
+
+db.clientes.updateMany({nome: "Juliana", telefone: 21955667878, ativo: true, serviço: "superSecagem"}, {$set: {serviço: "superCleanFast"}}, 
+
+{nome: "Jamile", telefone: 21902024411, ativo: true, serviço: "superLavagem"}, {$set: {serviço: "superCleanFast"}})
+ 
+Criando constante:
+
+const serviço = db.clientes.findOne()
+ 
+Exibindo constante:
+
+serviço
+ 
+serviço.serviço
+ 
+typeof serviço
+ 
+Deletando um document específico:
+
+db.clientes.deleteOne({nome: "Rodrigo"})
+ 
+Deletando varios documentos:
+
+db.clientes.deleteMany({ serviço: "superCleanFast"})
+ 
+Criando usuário:
+
+db.createUser({
+
+    user: "superUser",
+
+    pwd: "123456",
+
+    roles: [
+
+        { role: "readWrite", db: "cleanFast"}
+
+    ]
+
+})
+ 
+Listar os usuários:
+
+db.getUsers()
+ 
+Deletando usuários:
+
+db.dropUser("superUser")
+ 
+Listar os usuários existente no banco:
+
+db.getUsers()
+ 
+Deletando a collection:
+
+db.clientes.drop()
+ 
+Deletando o banco de dados:
+
+db.dropDatabase()
+ 

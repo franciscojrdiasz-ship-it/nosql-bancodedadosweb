@@ -1,0 +1,105 @@
+Criando um banco de dados:
+use crud
+
+Criando collection e dados:
+db.create.insertOne ({ nome: "Wecton", idade: 20, trabalha: true,
+hobbies: ["jogar futebol", "cinema"]})
+
+Exibir collection
+show collections
+
+Exibir documento
+db.create.find()
+
+criar mais um documento na collection acima
+db.create.insertOne({ nome: "Nicolle", idade: 19 })
+
+Exibir documentos
+db.create.find
+
+Criando varios documentos ao mesmo tempo:
+db.provas.insertMany([
+    { nome:  "Nicolle", notas: [10, 8, 8]},
+    { nome: "Samuel", notas: [10, 8, 8]}
+    ])
+
+    Vendo os documentos
+    db.provas.find()
+
+    Criando um documento com o proprio id:
+    db.provas.insertOne({_id: "100", nome: "Leonardo", notas: [9, 7, 8]})
+
+    Vendo os Documentos:
+    db.provas.find()
+
+    Criar um novo banco chamado:
+    use livros
+
+    Excluindo banco
+    db.dropDatabase()
+
+    comando para importar dados
+mongoimport --db biblioteca --collection livros --file livros-tecnologia.json --jsonArray
+
+
+comando para buscar um dado especifico:
+db.livros.find({ numerodepaginas: 340 })
+
+Comando para buscar documento entre valores:
+db.livros.find({ numerodepaginas: {$in:[200, 280]}})
+
+comando equivalente ao AND:
+db.livros.find({ numerodepaginas: 200, autor: "Aline fernandes"}).pretty()
+db.livros.find({ numerodepaginas: 280, autor: "Aline fernandes"}).pretty()
+
+busca greater than, ou seja, maior que:
+db.livros.find({numerodepaginas: {$gt: 300}}).pretty()
+
+busca letter than, ou seja menor que:
+db.livros.find({numerodepaginas: {$lt: 300}}).pretty
+
+Comando equivalente ao OR:
+db.livros.find({$or: [{numerodepaginas: {$lt: 210}}, {id: {$gt: 40}}]}).pretty()
+
+Contando a quantidade de dados:
+db.livro.find({ numerodepaginas: {$gt: 285}}).count()
+
+Buscar um documento especifico:
+db.livros.find({ id: 47})
+
+atualizando dados com metodo updateOne:
+db.livros.updateOne({ id: 47}, {$set: {numerodepaginas: 415}})
+
+Buscar um documento especifico:
+db.livros.find({ numerodepaginas: 260})
+
+
+Atualizando varios documentos ao mesmo tempo:
+db.livros.updateMany({ numerodepaginas: 262}, {$set: {numerodepaginas: 262}})
+
+Buscar um documento especifico
+db.livros.find({ numerodepaginas: 260})
+
+Atualizando varios documentos ao mesmo tempo:
+db.livros.updateMany({ numerodepaginas: 262}, {$set: {numerodepaginas: 260}})
+
+Buscar um documento especifico
+db.livros.find({ numerodepaginas: 260})
+
+Atualizando documento usando update para inserir um valor para chave que não existe:
+db.livros.updateMany({ datadapublicação: '2017-03-11'}, {$set: {qntvendas: 5}})
+
+Criando  mais um banco:
+use escola
+
+criando collection e inserindo documento:
+db.alunos.insertOne({id: 01, nome:"jose", turma: "A-tarde"})
+
+Buscando document:
+db.alunos.find()
+
+Comando para substituir todos os dados de uma vez:
+db.alunos.replaceOne({ id: 01}, {trancamento: true})
+
+buscando documento:
+db.alunos.find()
